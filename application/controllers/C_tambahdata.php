@@ -7,6 +7,7 @@ class C_tambahdata extends CI_Controller {
 
 		parent::__construct();
 		$this->load->helper(array('form','url'));
+		
 	}
 
 	public function index()
