@@ -1,55 +1,58 @@
 <div class="box">
 	<div class="box-header">
-       	<div class="row">
-			<div class="col-md-12">
-				<h2 style="text-align: right;">DATA RUANGAN</h2><br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 style="text-align: right;">DATA RUANGAN</h2><br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 ">
+					<a href="V_beranda"  data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sl pull-right "><i class="glyphicon glyphicon-plus"></i></a>		
+				</div>
+			</div>	
+		</div>      
+	</div>
+	
+	<div class="box-body">
+		<div class="container-fluid">
+			<div id="notifications">
+				<?php echo $this->session->flashdata('msg'); ?>
+			</div> 
+			<br>
+
+			<div class="box-body table-responsive">
+				<table id="example1" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+						<th>No</th>
+						<th>ID RUANGAN</th>
+						<th>NAMA RUANGAN</th>
+						
+						<th style="text-align:center;">aksi</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<?php $no=1; foreach($ruangan as $r): ?>		<!-- looping data -->
+					
+						<tr>
+						<td><?= $no++; ?></td>
+						<td><?= $r->id_ruangan; ?></td>
+						<td><?= $r->nama_ruangan; ?></td>
+						
+						<td align="center">
+							
+								<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_edit<?= $r->id_ruangan; ?>"><i class="fa fa-lg fa-edit"></i> </a>
+								<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapus1<?= $r->id_ruangan;?>"><i class="fa fa-lg fa-trash"></i> </a>
+						</td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12 ">
-				<a href="V_beranda"  data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sl pull-right "><i class="glyphicon glyphicon-plus"></i></a>		
-			</div>
-		</div>	      
-    </div>
-
-<div id="notifications">
-	<?php echo $this->session->flashdata('msg'); ?>
-</div> 
-<br>
-
-<div class="card">
-	<div class="box-body">
-    	<table id="example1" class="table table-bordered table-striped">
-        	<thead>
-		        <tr>
-		          <th>No</th>
-		          <th>ID RUANGAN</th>
-		          <th>NAMA RUANGAN</th>
-		          
-		          <th style="text-align:center;">aksi</th>
-		        </tr>
-        	</thead>
-	        <tbody>
-
-	        	<?php $no=1; foreach($ruangan as $r): ?>		<!-- looping data -->
-	        
-		        <tr>
-		          <td><?= $no++; ?></td>
-		          <td><?= $r->id_ruangan; ?></td>
-		          <td><?= $r->nama_ruangan; ?></td>
-		          
-		          <td align="center">
-		          	
-						<a class="btn btn-success" data-toggle="modal" data-target="#modal_edit<?= $r->id_ruangan; ?>"><i class="fa fa-lg fa-edit"></i> </a>
-						<a class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus1<?= $r->id_ruangan;?>"><i class="fa fa-lg fa-trash"></i> </a>
-		          </td>
-		        </tr>
-		     <?php endforeach; ?>
-	        </tbody>
-       
-   		</table>
-    </div>
-</div>
+	</div>
 </div>
 
 	

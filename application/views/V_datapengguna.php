@@ -1,61 +1,65 @@
 
  <div class="box">
     <div class="box-header">
-       	<div class="row">
-			<div class="col-md-12">
-				<h2 style="text-align: right;">DATA PENGGUNA</h2><br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 style="text-align: right;">DATA PENGGUNA</h2><br>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 ">
+					<a href="V_beranda"  data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sl pull-right "><i class="glyphicon glyphicon-plus"></i></a>		
+				</div>
+			</div>	      
+    	</div>
+	</div>
+	
+	<div class="box-body">
+		<div class="container-fluid">
+			<div id="notifications">			<!-- notifikasi berhasil or tidak -->
+				<?php echo $this->session->flashdata('msg'); ?>
+			</div> 
+			<br>
+
+			<div class="box-body table-responsive">
+					
+				<table id="example1" class="table table-bordered table-striped">
+						<thead>
+							<tr>
+							<th>No</th>
+							<th>Username</th>
+							<th>Password</th>
+							<th>Ruangan</th>
+							<th>Hak Akses</th>
+							<th style="text-align:center;">aksi</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<?php $no=1; foreach($users as $u): ?>		<!-- looping data -->
+						
+								<tr>
+
+									<td><?= $no++; ?></td>
+									<td><?= $u->username; ?></td>
+									<td><?= md5($u->password); ?></td>
+									<td><?= $u->ruangan;  ?></td>
+									<td><?= $u->hak_akses; ?></td>
+									<td align="center">
+											<a class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_infoo<?= $u->nip; ?>"><i class="fa fa-lg fa-info"></i> </a>
+											<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal_edit<?= $u->nip; ?>"><i class="fa fa-lg fa-edit"></i> </a>
+											<a class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_hapuss<?= $u->nip;?>"><i class="fa fa-lg fa-trash"></i> </a>
+									</td>
+								</tr>
+							<?php endforeach; ?>
+						
+						</tbody>
+					</table>
+				
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-md-12 ">
-				<a href="V_beranda"  data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sl pull-right "><i class="glyphicon glyphicon-plus"></i></a>		
-			</div>
-		</div>	      
-    </div>
-
-    <div id="notifications">			<!-- notifikasi berhasil or tidak -->
-		<?php echo $this->session->flashdata('msg'); ?>
-	</div> 
-	<br>
-
-	<!-- table tambah data -->
- 
-    <div class="box-body">
-    	<table id="example1" class="table table-bordered table-striped">
-        	<thead>
-		        <tr>
-		          <th>No</th>
-		          <th>Username</th>
-		          <th>Password</th>
-		          <th>Ruangan</th>
-		          <th>Hak Akses</th>
-		          <th style="text-align:center;">aksi</th>
-		        </tr>
-        	</thead>
-	        <tbody>
-
-	        	<?php $no=1; foreach($users as $u): ?>		<!-- looping data -->
-	        
-	    
-		        <tr>
-
-		          <td><?= $no++; ?></td>
-		          <td><?= $u->username; ?></td>
-		          <td><?= md5($u->password); ?></td>
-		          <td><?= $u->ruangan;  ?></td>
-		          <td><?= $u->hak_akses; ?></td>
-		          <td align="center">
-		          		<a class="btn btn-primary" data-toggle="modal" data-target="#modal_infoo<?= $u->nip; ?>"><i class="fa fa-lg fa-info"></i> </a>
-						<a class="btn btn-success" data-toggle="modal" data-target="#modal_edit<?= $u->nip; ?>"><i class="fa fa-lg fa-edit"></i> </a>
-						<a class="btn btn-danger" data-toggle="modal" data-target="#modal_hapuss<?= $u->nip;?>"><i class="fa fa-lg fa-trash"></i> </a>
-		          </td>
-		        </tr>
-		     <?php endforeach; ?>
-		     
-	        </tbody>
-       
-   		</table>
-    </div>
+	</div>
 </div>
 		
 
@@ -153,53 +157,52 @@
 
 
 <!-- mode info -->
-			<?php foreach($users as $u) :?>
-				<div class="modal fade" id="modal_infoo<?= $u->nip;?>" role="dialog">
-					<div class="modal-dialog">
-					 <div class="modal-body">
-						<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="">
-						<div class="col-md-10">
+<?php foreach($users as $u) :?>
+	<div class="modal fade" id="modal_infoo<?= $u->nip;?>" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-body">
+				<form class="form-horizontal"  enctype="multipart/form-data" method="post" action="">
+					<div class="col-md-10">
 						<div class="box box-primary">
-				            <div class="box-body box-profile">
-				               <img src="<?= base_url($u->image); ?>" class="profile-user-img img-responsive img-circle" alt="User profile picture">
-				               
-				             	 
+							<div class="box-body box-profile">
+								<img src="<?= base_url($u->image); ?>" class="profile-user-img img-responsive img-circle" alt="User profile picture">
+					
+								<div class="col-sm-12" align="center">
+									<ul class="list-group list-group-unbordered">
+										<li class="list-group-item">
+											<b>Nama Lengkap : <?= $u->nama; ?></b> 
+										</li>
+										<li class="list-group-item">
+											<b>Nip : <?=$u->nip;?></b> 
+										</li>
+										<li class="list-group-item">
+											<b>Username : <?= $u->username; ?></b> 
+										</li>
+										<li class="list-group-item">
+											<b>Ruangan : <?=$u->ruangan;?> </b>
+										<li class="list-group-item">
+											<b>Hak Akses : <?=$u->hak_akses;?></b> 
+										</li>
+									</ul>
+								</div>
 
-							              <div class="col-sm-12" text align="center">
-											<ul class="list-group list-group-unbordered">
-								                <li class="list-group-item">
-								                  <b>Nama Lengkap : <?= $u->nama; ?></b> 
-								                </li>
-								                <li class="list-group-item">
-								                  <b>Nip : <?=$u->nip;?></b> 
-								                </li>
-								                <li class="list-group-item">
-								                  <b>Username : <?= $u->username; ?></b> 
-								                </li>
-								                <li class="list-group-item">
-								                  <b>Ruangan : <?=$u->ruangan;?> </b>
-								                <li class="list-group-item">
-								                  <b>Hak Akses : <?=$u->hak_akses;?></b> 
-								                </li>
-								             </ul>
-							            <!-- /.box-body -->
-									     	 </div>
+								<div class="modal-footer">
+									<a class="btn btn-primary icon-btn" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+								</div>
 
-				    					<div class="modal-footer">
-											<a class="btn btn-primary icon-btn" href="#" data-dismiss="modal"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
-										</div>
-
-									 </div>
-								  </div>						                	
-								</div>		<!-- end box body -->
-							</form>
-						</div>
-					</div>
-				</div>
-				<?php endforeach; ?>  <!-- end model info -->
+							</div>
+						</div>						                	
+					</div>		<!-- end box body -->
+				</form>
+			</div>
+		</div>
+	</div>
+<?php endforeach; ?>  
+<!-- end model info -->
 
 
-<!-- edit modal -->
+
+				<!-- edit modal -->
 <?php foreach($users as $u):  ?>
 <div class="modal fade" id="modal_edit<?= $u->nip;?>" role="dialog">
 	<div class="modal-dialog">

@@ -1,59 +1,94 @@
  <div class="box">
     <div class="box-header">
-       	<div class="row">
-			<div class="col-md-12">
-				<h2 style="text-align: right;">DATA BARANG</h2><br>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 style="text-align: right;">DATA BARANG</h2><br>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12 ">
+					<a href="V_beranda"  data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sl pull-right "><i class="glyphicon glyphicon-plus"></i></a>
+
+				</div>
 			</div>
 		</div>
-		
-		
-		<div class="row">
-			<div class="col-md-12 ">
-				<a href="V_beranda"  data-toggle="modal" data-target="#myModal" class="btn btn-primary btn-sl pull-right "><i class="glyphicon glyphicon-plus"></i></a>
-
-			</div>
-		</div>	      
+       		      
     </div>
 
-    <div id="notifications">			<!-- notifikasi berhasil or tidak -->
-		<?php echo $this->session->flashdata('msg'); ?>
-	</div> 
-	<br>
-
-	<!-- table tambah data -->
- 
     <div class="box-body">
-    	<table id="example1" class="table table-bordered table-striped">
-        	<thead>
-		        <tr>
-		          <th>No</th>
-		          <th>NO Seri Barang</th>
-		          <th>Nama Barang</th>
-		          <th>Penempatan Barang</th>
-		          <th style="text-align:center;">aksi</th>
-		        </tr>
-        	</thead>
-	        <tbody>
+		<div class="container-fluid">
+			<div id="notifications">
+				<?php echo $this->session->flashdata('msg'); ?>
+			</div> 
+			<br>
 
-	        	<?php $no=1; foreach($databarang as $d): ?>		<!-- looping data -->
-	        
-		        <tr>
-		          <td><?= $no++; ?></td>
-		          <td><?= $d->no_seri; ?></td>
-		          <td><?= $d->nama_barang; ?></td>
-		          <td><?= $d->penempatan_barang; ?></td>
-		          <td align="center">
-		          	<a class="btn btn-primary" data-toggle="modal" data-target="#modal_info<?= $d->no_seri; ?>"><i class="fa fa-lg fa-info"></i> </a>
-						<a class="btn btn-success" data-toggle="modal" data-target="#modal_edit<?= $d->no_seri; ?>"><i class="fa fa-lg fa-edit"></i> </a>
-						<a class="btn btn-danger" data-toggle="modal" data-target="#modal_hapus<?= $d->no_seri;?>"><i class="fa fa-lg fa-trash"></i> </a>
-						<a href="<?= base_url('C_databarang/cetak/'.$d->no_seri) ?>" class="btn btn-primary "><i class="glyphicon glyphicon-print"></i></a>	
-		          </td>
-		        </tr>
-		     <?php endforeach; ?>
-	        </tbody>
-       
-   		</table>
-    </div>
+			
+			<div class="box-body table-responsive">
+				<table id="example1" class="table table-bordered table-striped">
+					<thead>
+						<tr>
+						<th>No</th>
+						<th>NO Seri Barang</th>
+						<th>Nama Barang</th>
+						<th>Penempatan Barang</th>
+						<th	></th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<?php $no=1; foreach($databarang as $d): ?>		<!-- looping data -->
+					
+						<tr>
+							<td><?= $no++; ?></td>
+							<td><?= $d->no_seri; ?></td>
+							<td><?= $d->nama_barang; ?></td>
+							<td><?= $d->penempatan_barang; ?></td>
+							<td>
+								<div class="margin">
+									<div class="btn-group">
+										<button type="button" class="btn btn-default btn-flat">Aksi</button>
+										<button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+											<span class="sr-only">Toggle Dropdown</span>
+										</button>
+
+										<ul class="dropdown-menu" role="menu">
+											<li>
+												<a data-toggle="modal" data-target="#modal_info<?= $d->no_seri; ?>">Info</a>
+											</li>
+
+											<li class="divider"></li>
+
+											<li>
+												<a data-toggle="modal" data-target="#modal_edit<?= $d->no_seri; ?>">Edit</a>
+											</li>
+
+											<li class="divider"></li>
+
+											<li>
+												<a data-toggle="modal" data-target="#modal_hapus<?= $d->no_seri;?>">Hapus</a>
+											</li>
+
+											<li class="divider"></li>
+
+											<li>
+												<a href="<?= base_url('C_databarang/cetak/'.$d->no_seri) ?>">Cetak</a>
+											</li>
+										</ul>
+									</div>
+								</div>	
+							</td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+			
+				</table>
+    		</div>
+		</div>
+	</div>
+
 </div>
 		
 
