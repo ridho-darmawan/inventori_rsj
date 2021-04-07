@@ -23,7 +23,7 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-              <img src="<?=base_url('asset/rsj.jpg') ?>"height="100 px" >
+              <img src="<?=base_url('asset/rsj-logo.png') ?>"height="100 px" >
             <form role="form" action="<?= base_url('C_login/dologin'); ?>" method="post">
               <h1>Login Form</h1>
 

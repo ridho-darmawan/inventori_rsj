@@ -56,19 +56,19 @@
 
 										<ul class="dropdown-menu" role="menu">
 											<li>
-												<a data-toggle="modal" data-target="#modal_info<?= $d->no_seri; ?>">Info</a>
+												<a href="#" data-toggle="modal" data-target="#modal_info<?= $d->no_seri; ?>">Info</a>
 											</li>
 
 											<li class="divider"></li>
 
 											<li>
-												<a data-toggle="modal" data-target="#modal_edit<?= $d->no_seri; ?>">Edit</a>
+												<a href="#" data-toggle="modal" data-target="#modal_edit<?= $d->no_seri; ?>">Edit</a>
 											</li>
 
 											<li class="divider"></li>
 
 											<li>
-												<a data-toggle="modal" data-target="#modal_hapus<?= $d->no_seri;?>">Hapus</a>
+												<a href="#" data-toggle="modal" data-target="#modal_hapus<?= $d->no_seri;?>">Hapus</a>
 											</li>
 
 											<li class="divider"></li>
